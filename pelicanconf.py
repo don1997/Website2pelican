@@ -1,5 +1,5 @@
 AUTHOR = 'Donald'
-SITENAME = 'A blog'
+SITENAME = 'DevBlog'
 SITEURL = ''
 
 PATH = 'content'
@@ -22,10 +22,15 @@ LINKS = (('Pelican', 'https://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+(('github', 'https://github.com/don1997'),
+        ('envelope', 'mailto:donaldmclaughlin116@gmail.com'),)
+
+
 
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
+
+HEADER_COVER = 'images/static/minimal.jpg'
+
