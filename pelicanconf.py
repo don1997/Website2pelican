@@ -22,7 +22,7 @@ LINKS = (('Pelican', 'https://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-(('github', 'https://github.com/don1997'),
+SOCIAL = (('github', 'https://github.com/don1997'),
         ('envelope', 'mailto:donaldmclaughlin116@gmail.com'),)
 
 
