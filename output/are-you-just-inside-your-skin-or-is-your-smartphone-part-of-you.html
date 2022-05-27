@@ -103,6 +103,12 @@
     <!-- Post Content -->
     <article>
         <p>In November 2017, a gunman entered a church in Sutherland Springs in Texas, where he killed 26 people and wounded 20 others. He escaped in his car, with police and residents in hot pursuit, before losing control of [...]</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">test</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"></span>
+<span class="w">   </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="no">#f</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="p">((</span><span class="nb">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="p">((</span><span class="nb">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span><span class="w"></span>
+</code></pre></div>
     </article>
 
 
