@@ -1,6 +1,6 @@
 AUTHOR = 'Donald'
 SITENAME = 'A blog'
-SITEURL = 'willowy-puffpuff-07b4d9.netlify.app'
+SITEURL = ''
 
 PATH = 'content'
 
