@@ -1,186 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-        <title>DevBlog - Tag programming</title>
-
-        <!-- Bootstrap Core CSS -->
-        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom CSS -->
-        <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
-
-        <!-- Code highlight color scheme -->
-            <link href="/theme/css/code_blocks/darkly.css" rel="stylesheet">
-
-
-        <!-- Custom Fonts -->
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-                <meta property="og:locale" content="">
-		<meta property="og:site_name" content="DevBlog">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>DevBlog - programming</title>
+        <link rel="stylesheet" href="http://localhost:8080/theme/css/main.css" />
+        <link href="http://localhost:8080/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="DevBlog Atom Feed" />
 </head>
 
-<body class="tag-programming">
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://localhost:8080/">DevBlog</a></h1>
+                <nav><ul>
+                    <li><a href="http://localhost:8080/category/sicp.html">SICP</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">DevBlog</a>
-            </div>
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://localhost:8080/sicp-exercise-1.17.html">SICP Exercise 1.17</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-05-28T14:55:00-04:00">
+                Published: Sat 28 May 2022
+        </abbr>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://localhost:8080/author/donald.html">Donald</a>
+        </address>
+<p>In <a href="http://localhost:8080/category/sicp.html">SICP</a>.</p>
+<p>tags: <a href="http://localhost:8080/tag/exercises.html">exercises</a> <a href="http://localhost:8080/tag/math.html">math</a> <a href="http://localhost:8080/tag/programming.html">programming</a> </p>
+</footer><!-- /.post-info --><p><strong>Exercise 1.17.</strong>  The exponentiation algorithms in this section are based on performing exponentiation by means of repeated multiplication. In a similar way, one can perform integer multiplication by means of repeated addition. The following multiplication procedure (in which it is assumed that our language can only add, not multiply) is analogous to the expt procedure:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="mi">0</span><span class="w"></span>
+<span class="w">      </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="mi">1</span><span class="p">)))))</span><span class="w"></span>
+</code></pre></div>
 
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+<p>This algorithm takes a number of steps that is linear in b. Now suppose we include, together with addition, operations double, which doubles an integer, and halve, which divides an (even) integer by 2. Using these, design a multiplication procedure analogous to fast-expt that uses a logarithmic number of steps. </p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">provide</span><span class="w"> </span><span class="n">Double</span><span class="p">)</span><span class="w"></span>
+<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">Double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
 
-        <header class="intro-header" style="background-image: url('/images/static/minimal.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="page-heading">
-                        <h1>Tag programming</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+<span class="p">(</span><span class="k">provide</span><span class="w"> </span><span class="n">Half</span><span class="p">)</span><span class="w"></span>
+<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">Half</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">/</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-preview">
-            <a href="/sicp-exercise-1.17.html" rel="bookmark" title="Permalink to SICP Exercise 1.17">
-                <h2 class="post-title">
-                    SICP Exercise 1.17
-                </h2>
-            </a>
-                <p class="article-summary">
-                    My solution to exercise 1.17 in SICP.
-                </p>
-            <p class="post-meta">Posted by
-                    <a href="/author/donald.html">Donald</a>
-                 on Sat 28 May 2022
-            </p>
-        </div>
-        <div class="post-preview">
-            <a href="/sicp-exercise-1.16.html" rel="bookmark" title="Permalink to SICP Exercise 1.16">
-                <h2 class="post-title">
-                    SICP Exercise 1.16
-                </h2>
-            </a>
-                <p class="article-summary">
-                    My solution to exercise 1.16 in SICP.
-                </p>
-            <p class="post-meta">Posted by
-                    <a href="/author/donald.html">Donald</a>
-                 on Sat 28 May 2022
-            </p>
-        </div>
-        <div class="post-preview">
-            <a href="/sicp-exercise-1.11.html" rel="bookmark" title="Permalink to SICP Exercise 1.11">
-                <h2 class="post-title">
-                    SICP Exercise 1.11
-                </h2>
-            </a>
-                <p class="article-summary">
-                    My solution to exercise 1.11 in SICP.
-                </p>
-            <p class="post-meta">Posted by
-                    <a href="/author/donald.html">Donald</a>
-                 on Sat 28 May 2022
-            </p>
-        </div>
-        <div class="post-preview">
-            <a href="/sicp-exercise-1.3.html" rel="bookmark" title="Permalink to SICP Exercise 1.3">
-                <h2 class="post-title">
-                    SICP Exercise 1.3
-                </h2>
-            </a>
-                <p class="article-summary">
-                    My solution to exercise 1.3 in SICP.
-                </p>
-            <p class="post-meta">Posted by
-                    <a href="/author/donald.html">Donald</a>
-                 on Fri 27 May 2022
-            </p>
-        </div>
+<span class="p">(</span><span class="k">provide</span><span class="w"> </span><span class="n">fast-mult</span><span class="p">)</span><span class="w"></span>
 
-            </div>
-        </div>
-    </div>
+<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fast-mult</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">sum</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span>
+<span class="w">    </span><span class="p">((</span><span class="k">or</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="mi">0</span><span class="p">)(</span><span class="nb">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="n">sum</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">((</span><span class="nb">even?</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">fast-mult</span><span class="w"> </span><span class="p">(</span><span class="n">Double</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">Half</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="n">sum</span><span class="p">))</span><span class="w"></span>
+<span class="w">     </span><span class="p">(</span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="n">fast-mult</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">sum</span><span class="p">)))))</span><span class="w"></span>
+</code></pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
 
-    <hr>
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://localhost:8080/sicp-exercise-1.16.html" rel="bookmark"
+                           title="Permalink to SICP Exercise 1.16">SICP Exercise 1.16</a></h1>
+                </header>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                            <li>
-                                <a href="https://github.com/don1997">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mailto:donaldmclaughlin116@gmail.com">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                    </ul>
-<p class="copyright text-muted">
-    Blog powered by <a href="http://getpelican.com">Pelican</a>,
-    which takes great advantage of <a href="http://python.org">Python</a>. <br />        &copy;  Donald
-</p>                </div>
-            </div>
-        </div>
-    </footer>
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-05-28T14:06:00-04:00">
+                Published: Sat 28 May 2022
+        </abbr>
 
-    <!-- jQuery -->
-    <script src="/theme/js/jquery.min.js"></script>
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://localhost:8080/author/donald.html">Donald</a>
+        </address>
+<p>In <a href="http://localhost:8080/category/sicp.html">SICP</a>.</p>
+<p>tags: <a href="http://localhost:8080/tag/exercises.html">exercises</a> <a href="http://localhost:8080/tag/math.html">math</a> <a href="http://localhost:8080/tag/programming.html">programming</a> </p>
+</footer><!-- /.post-info -->                <p>My solution to exercise 1.16 in SICP.</p>
+                <a class="readmore" href="http://localhost:8080/sicp-exercise-1.16.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/theme/js/bootstrap.min.js"></script>
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://localhost:8080/sicp-exercise-1.11.html" rel="bookmark"
+                           title="Permalink to SICP Exercise 1.11">SICP Exercise 1.11</a></h1>
+                </header>
 
-        <!-- Custom Theme JavaScript -->
-        <script src="/theme/js/clean-blog.min.js"></script>
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-05-28T11:15:00-04:00">
+                Published: Sat 28 May 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://localhost:8080/author/donald.html">Donald</a>
+        </address>
+<p>In <a href="http://localhost:8080/category/sicp.html">SICP</a>.</p>
+<p>tags: <a href="http://localhost:8080/tag/exercises.html">exercises</a> <a href="http://localhost:8080/tag/math.html">math</a> <a href="http://localhost:8080/tag/programming.html">programming</a> </p>
+</footer><!-- /.post-info -->                <p>My solution to exercise 1.11 in SICP.</p>
+                <a class="readmore" href="http://localhost:8080/sicp-exercise-1.11.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://localhost:8080/sicp-exercise-1.3.html" rel="bookmark"
+                           title="Permalink to SICP Exercise 1.3">SICP Exercise 1.3</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-05-27T22:09:00-04:00">
+                Published: Fri 27 May 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-05-27T22:09:00-04:00">
+                Updated: Fri 27 May 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://localhost:8080/author/donald.html">Donald</a>
+        </address>
+<p>In <a href="http://localhost:8080/category/sicp.html">SICP</a>.</p>
+<p>tags: <a href="http://localhost:8080/tag/exercises.html">exercises</a> <a href="http://localhost:8080/tag/math.html">math</a> <a href="http://localhost:8080/tag/programming.html">programming</a> </p>
+</footer><!-- /.post-info -->                <p>My solution to exercise 1.3 in SICP.</p>
+                <a class="readmore" href="http://localhost:8080/sicp-exercise-1.3.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://localhost:8080/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/don1997">github</a></li>
+                            <li><a href="mailto:donaldmclaughlin116@gmail.com">envelope</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
 
 </body>
-
 </html>
