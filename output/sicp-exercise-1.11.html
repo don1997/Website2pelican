@@ -1,65 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="generator" content="Pelican" />
         <title>SICP Exercise 1.11</title>
-        <link rel="stylesheet" href="http://localhost:8080/theme/css/main.css" />
-        <link href="http://localhost:8080/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="DevBlog Atom Feed" />
-        <meta name="description" content="My solution to exercise 1.11 in SICP." />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
+<body>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://localhost:8080/">DevBlog</a></h1>
-                <nav><ul>
-                    <li class="active"><a href="http://localhost:8080/category/sicp.html">SICP</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="http://localhost:8080/sicp-exercise-1.11.html" rel="bookmark"
-           title="Permalink to SICP Exercise 1.11">SICP Exercise 1.11</a></h1>
-    </header>
+    <div class="navigation pure-menu pure-menu-horizontal">
+        <a href="/" class="pure-menu-heading  pure-menu-link">DevBlog</a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"></li>
+
+            <li class="pure-menu-item pure-menu-selected"><a href="/category/sicp.html" class="pure-menu-link">SICP</a></li>
+        </ul>
+    </div>
+
+
+<div class="page-container">
+    <div class="entry-content">
+        <div class="post-meta pure-g">
+<div class="pure-u-3-4 meta-data">
+    <a href="/category/sicp.html" class="category">SICP</a><br />
+
+    <a class="author" href="/author/donald.html">Donald</a>
+    &mdash; <abbr title="2022-05-28T11:15:00-04:00">Sat 28 May 2022</abbr>
+</div>        </div>
+    </div>
+
+    <div class="article-header-container">
+        <div class="background-image-container">
+
+            <div class="background-image-small">
+                <div class="title-container">
+                    <h1>SICP Exercise 1.11</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2022-05-28T11:15:00-04:00">
-                Published: Sat 28 May 2022
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="http://localhost:8080/author/donald.html">Donald</a>
-        </address>
-<p>In <a href="http://localhost:8080/category/sicp.html">SICP</a>.</p>
-<p>tags: <a href="http://localhost:8080/tag/exercises.html">exercises</a> <a href="http://localhost:8080/tag/math.html">math</a> <a href="http://localhost:8080/tag/programming.html">programming</a> </p>
-</footer><!-- /.post-info -->      <p><strong>Exercise 1.11.</strong>  A function f is defined by the rule that f(n) = n if n&lt;3 and f(n) = f(n - 1) + 2f(n - 2) + 3f(n - 3) if n&gt; 3. Write a procedure that computes f by means of a recursive process. Write a procedure that computes f by means of an iterative process.</p>
+        <p><strong>Exercise 1.11.</strong>  A function f is defined by the rule that f(n) = n if n&lt;3 and f(n) = f(n - 1) + 2f(n - 2) + 3f(n - 3) if n&gt; 3. Write a procedure that computes f by means of a recursive process. Write a procedure that computes f by means of an iterative process.</p>
 <p>Note the function definition: </p>
 <div class="math">$$f(n) = n\space \texttt{if}\space n&lt;3\space \texttt{and}\space f(n) = f(n - 1) + 2f(n - 2) + 3f(n - 3)\space\texttt{if}\space n &gt; 3$$</div>
-<div class="highlight"><pre><span></span><code><span class="c1">;;Using linear recursion</span>
-<span class="ss">(</span><span class="nv">provide</span> <span class="nv">function</span><span class="ss">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1">;;Using linear recursion</span><span class="w"></span>
+<span class="p">(</span><span class="k">provide</span><span class="w"> </span><span class="n">function</span><span class="p">)</span><span class="w"></span>
 
-<span class="ss">(</span><span class="nv">define</span> <span class="ss">(</span><span class="nv">function</span> <span class="nv">n</span><span class="ss">)</span>
-  <span class="ss">(</span><span class="k">if</span> <span class="ss">(</span><span class="o">&lt;</span> <span class="nv">n</span> <span class="mi">3</span><span class="ss">)</span>
-    <span class="nv">n</span>
-    <span class="ss">(</span><span class="o">+</span> <span class="ss">(</span><span class="nv">function</span> <span class="ss">(</span><span class="o">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="ss">))</span>
-       <span class="ss">(</span><span class="o">*</span> <span class="ss">(</span><span class="nv">function</span><span class="ss">(</span><span class="o">-</span> <span class="nv">n</span> <span class="mi">2</span><span class="ss">))</span> <span class="mi">2</span><span class="ss">)</span>
-       <span class="ss">(</span><span class="o">*</span> <span class="ss">(</span><span class="nv">function</span><span class="ss">(</span><span class="o">-</span> <span class="nv">n</span> <span class="mi">3</span><span class="ss">))</span> <span class="mi">3</span><span class="ss">))))</span>
+<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">function</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">n</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">function</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
+<span class="w">       </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="mi">3</span><span class="p">))))</span><span class="w"></span>
 
-<span class="c1">;;;;Using iterative method</span>
+<span class="c1">;;;;Using iterative method</span><span class="w"></span>
 
-<span class="ss">(</span><span class="nv">provide</span> <span class="nv">fun</span><span class="ss">)</span>
-<span class="ss">(</span><span class="nv">define</span> <span class="ss">(</span><span class="nv">fun</span> <span class="nv">n</span><span class="ss">)</span>
-  <span class="ss">(</span><span class="nv">fun</span><span class="o">-</span><span class="nv">iter</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="nv">n</span><span class="ss">))</span>
+<span class="p">(</span><span class="k">provide</span><span class="w"> </span><span class="n">fun</span><span class="p">)</span><span class="w"></span>
+<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fun</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">fun-iter</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">n</span><span class="p">))</span><span class="w"></span>
 
-<span class="ss">(</span><span class="nv">provide</span> <span class="nv">fun</span><span class="o">-</span><span class="nv">iter</span><span class="ss">)</span>
-<span class="ss">(</span><span class="nv">define</span> <span class="ss">(</span><span class="nv">fun</span><span class="o">-</span><span class="nv">iter</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">count</span><span class="ss">)</span>
-  <span class="ss">(</span><span class="k">if</span> <span class="ss">(</span><span class="o">=</span> <span class="nv">count</span> <span class="mi">0</span><span class="ss">)</span>
-    <span class="nv">c</span>
-   <span class="ss">(</span><span class="nv">fun</span><span class="o">-</span><span class="nv">iter</span> <span class="ss">(</span><span class="o">+</span> <span class="nv">a</span> <span class="ss">(</span><span class="o">*</span> <span class="mi">2</span> <span class="nv">b</span><span class="ss">)</span> <span class="ss">(</span><span class="o">*</span> <span class="mi">3</span> <span class="nv">c</span><span class="ss">))</span> <span class="nv">a</span> <span class="nv">b</span> <span class="ss">(</span><span class="o">-</span> <span class="nv">count</span> <span class="mi">1</span><span class="ss">))))</span>
+<span class="p">(</span><span class="k">provide</span><span class="w"> </span><span class="n">fun-iter</span><span class="p">)</span><span class="w"></span>
+<span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">fun-iter</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="nb">count</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">c</span><span class="w"></span>
+<span class="w">   </span><span class="p">(</span><span class="n">fun-iter</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">c</span><span class="p">))</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="mi">1</span><span class="p">))))</span><span class="w"></span>
 </code></pre></div>
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
@@ -124,38 +132,47 @@
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-    </div><!-- /.entry-content -->
+    </div>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="https://getpelican.com/">Pelican</a></li>
-                            <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://localhost:8080/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+    <footer>
+        <div class="tags">
+            <a href="/tag/exercises.html">exercises</a>
+            <a href="/tag/math.html">math</a>
+            <a href="/tag/programming.html">programming</a>
+        </div>
+        <div class="pure-g post-footer">
+            <div class="pure-u-1 pure-u-md-1-2">
+                <div class="pure-g poster-info">
+                    <div class="pure-u-3-4">
+                        <h3 class="author-name"><a href="/author/donald.html">Donald</a></h3>
+                        <p class="author-description">
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-                            <li><a href="https://github.com/don1997">github</a></li>
-                            <li><a href="mailto:donaldmclaughlin116@gmail.com">envelope</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
-                </address><!-- /#about -->
 
-                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+        </div>
+
+
+    </footer>
+
+
+</div>
+
+
+
+    <footer class="index-footer">
+
+        <a href="/" title="DevBlog">DevBlog</a>
+        <a href="/category/sicp.html">SICP</a>
+        <a href="https://getpelican.com/">Pelican</a>
+        <a href="https://www.python.org/">Python.org</a>
+        <a href="https://palletsprojects.com/p/jinja/">Jinja2</a>
+        <a href="#">You can modify those links in your config file</a>
+
+    </footer>
 
 </body>
 </html>

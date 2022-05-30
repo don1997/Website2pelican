@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>SICP section 1.1-1.2</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+<body>
+
+    <div class="navigation pure-menu pure-menu-horizontal">
+        <a href="/" class="pure-menu-heading  pure-menu-link">DevBlog</a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"></li>
+
+            <li class="pure-menu-item pure-menu-selected"><a href="/category/sicp.html" class="pure-menu-link">SICP</a></li>
+        </ul>
+    </div>
+
+
+<div class="page-container">
+    <div class="entry-content">
+        <div class="post-meta pure-g">
+<div class="pure-u-3-4 meta-data">
+    <a href="/category/sicp.html" class="category">SICP</a><br />
+
+    <a class="author" href="/author/donald.html">Donald</a>
+    &mdash; <abbr title="2022-05-30T11:17:00-04:00">Mon 30 May 2022</abbr>
+</div>        </div>
+    </div>
+
+    <div class="article-header-container">
+        <div class="background-image-container">
+
+            <div class="background-image-small">
+                <div class="title-container">
+                    <h1>SICP section 1.1-1.2</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="entry-content">
+        <h1>On SICP sections 1.1-1.2</h1>
+<p>The first two sections of SICP cover lots of ground. It starts off explaining the basic syntax of scheme and by the end of 1.2 it expects the reader to be able to implement recursion with ease in scheme. </p>
+<p>Due to the pace at which I must go through the book I will only hit the key concepts that I thought were important.</p>
+<p>These key concpets being:</p>
+<ol>
+<li>
+<p>Substitution model for Procedure Application</p>
+</li>
+<li>
+<p>Linear recursion and Tree recursion</p>
+</li>
+<li>
+<p>Iteration and tail recursion</p>
+</li>
+</ol>
+<h2>Substitution Model for Procedure Application</h2>
+<p>Basically the substitution model is the how the book explains how scheme interperets compound expressions. </p>
+<p>There are three steps to this process: </p>
+<ol>
+<li>
+<p>Evaluate the Procedure</p>
+</li>
+<li>
+<p>Evaluate the Arguments</p>
+</li>
+<li>
+<p>Apply the procedure to the arugments</p>
+</li>
+</ol>
+<p><strong>Note:</strong> The book makes it clear that this is not how the interpreter actually works. Instead it is a model that helps us understand how our programs work.</p>
+<p>A good example for this process can be found with the procedure <code>sum-of-squares</code></p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">sum-of-squares</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w">  </span>
+<span class="w">     </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">y</span><span class="p">)))</span><span class="w"> </span><span class="c1">;;Body of procedure</span><span class="w"></span>
+<span class="w">     </span><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="p">(</span><span class="n">square</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"></span>
+<span class="n">------------------------</span><span class="w"></span>
+<span class="p">(</span><span class="n">sum-of-squares</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>This procedure gets evaluated using the stpes explained above.</p>
+<ol>
+<li>First  we have <code>formal parameters x and y</code> ,</li>
+</ol>
+<p>which are called by arguments 3 and 4 in the <code>sum-of-squares</code> procedure call.</p>
+<ol>
+<li>
+<p>Substitute every occurence of x and y with 3 and 4.</p>
+</li>
+<li>
+<p><code>(+ (square x) (square y))</code> /the body of the procedure becomes <code>(+ (square 3) (square 4))</code></p>
+</li>
+<li>
+<p>Thus the expression directly above reduces to<code>(+ (* 3 3) (* 4 4)).</code> using the definition of squares.</p>
+</li>
+<li>
+<p>Applying the multiplications gives <code>(+ 9 16)</code></p>
+</li>
+<li>
+<p>Applying addition gives <code>25</code>    </p>
+</li>
+</ol>
+<h3>Applicative Order vs Normal Order</h3>
+<blockquote>
+<p>Definition: Applicative Order- Method of evaluation by evaluating the operator, the operands, and then applying the operator.</p>
+<p>Definition: Normal Order: To not evaluate the operand until the value is needed. </p>
+</blockquote>
+<h5>Applicative Order Example</h5>
+<p>Suppose we have the expression <code>(square (+ 3 2))</code></p>
+<p>It would evaluate like this under the rule of applicative order:</p>
+<div class="highlight"><pre><span></span><code>(square (+ 3 2))
+(square 5)
+(* 5 5)
+25
+</code></pre></div>
+
+<p>You evaluate the parameter x before you go to the body of square. When you evaluate <code>(+ 3 2)</code>, you get 5 and this passed into square. This means <code>x is bound to 5</code>. </p>
+<h5>Normal Order Order Example</h5>
+<div class="highlight"><pre><span></span><code>(square (+ 3 2))
+(* (+ 3 2) (+ 3 2))
+(* 5 5)
+25
+</code></pre></div>
+
+<p>In normal order you avoid evaluating <code>(+ 3 2)</code> until you need to. </p>
+<p>In this case x in <code>(square x)</code> is bound to <code>(+ 3 2)</code>.</p>
+<p>Since you don't evaluate the <code>(+ 3 2)</code> until it's needed. You end up needing to evalutate it twice.</p>
+<p>With applicative order, since the operand x is evaluated before applying the procedure, you only evaluate <code>(+ 3 2)</code> once.</p>
+<h2>Iteration and Tail Recursion</h2>
+<p>Useful links: </p>
+<ul>
+<li>
+<p><a href="https://berkeley-cs61as.github.io/textbook.html">Textbook - CS 61AS</a></p>
+</li>
+<li>
+<p><a href="https://sookocheff.com/post/fp/evaluating-lambda-expressions/">Normal, Applicative and Lazy Evaluation - Kevin Sookocheff</a></p>
+</li>
+</ul>
+    </div>
+
+    <footer>
+        <div class="pure-g post-footer">
+            <div class="pure-u-1 pure-u-md-1-2">
+                <div class="pure-g poster-info">
+                    <div class="pure-u-3-4">
+                        <h3 class="author-name"><a href="/author/donald.html">Donald</a></h3>
+                        <p class="author-description">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+    </footer>
+
+
+</div>
+
+
+
+    <footer class="index-footer">
+
+        <a href="/" title="DevBlog">DevBlog</a>
+        <a href="/category/sicp.html">SICP</a>
+        <a href="https://getpelican.com/">Pelican</a>
+        <a href="https://www.python.org/">Python.org</a>
+        <a href="https://palletsprojects.com/p/jinja/">Jinja2</a>
+        <a href="#">You can modify those links in your config file</a>
+
+    </footer>
+
+</body>
+</html>
